@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Filament\Resources\TodoResource\Pages;
+
+use App\Filament\Resources\TodoResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateTodo extends CreateRecord
+{
+    protected static string $resource = TodoResource::class;
+    protected static bool $canCreateAnother = false;
+    
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+        return $data;
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+}
