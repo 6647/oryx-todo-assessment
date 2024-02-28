@@ -1,18 +1,26 @@
 <?php
 
+use App\Mail\ReminderEmail;
+use App\Models\Todo;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('filament.admin.home');
 });
+
+// FOR TESTING
+// Route::get('/mail', function () {
+//     $todos = Todo::where('due_date', '<', Carbon::now()->subMinute(1))->get();
+//     foreach ($todos as $todo) {
+//         Mail::to($todo->user->email)->send(new ReminderEmail($todo));
+//     }
+//     dd('done');
+
+//     $todos = Todo::where('due_date', '<', Carbon::now()->subMinute(1))->get();
+//     dd($todos[0]->user->email);
+//     Mail::to('omar6647@gmail.com')->send(new ReminderEmail());
+//     dd('hi');
+// });

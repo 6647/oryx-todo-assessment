@@ -65,11 +65,11 @@ class TodoResource extends Resource
                     ->sortable()
                     ->color(fn ($state) => $state < now()  ? 'gray' : 'white'),
                 Tables\Columns\TextColumn::make('priority')
+                    ->sortable()
                     ->color(fn ($state) => match (strtolower($state)) {
                         'normal' => 'warning',
                         'low' => 'gray',
                         'high' => 'danger',
-                        // 'rejected' => 'danger',
                     }),
             ])
             ->filters([
