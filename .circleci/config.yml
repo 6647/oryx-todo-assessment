@@ -7,11 +7,11 @@ jobs:
       - image: cimg/php:8.2.7
 
     steps:
-      - checkout
-      - run:
-          name: "Create Environment file and generate app key"
-          command: |
-            mv .env.testing .env
+      # - checkout
+      # - run:
+      #     name: "Create Environment file and generate app key"
+      #     command: |
+      #       mv .env.testing .env
 
       # Download and cache dependencies
       - restore_cache:
