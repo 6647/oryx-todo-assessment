@@ -19,7 +19,8 @@ class SendEmail extends Command
     public function handle()
     {
         // Code to send the email using Laravel's Mail facade or any other mail library
-        $todos = Todo::where('due_date', '<', Carbon::now()->subMinute(1))->where('reminder', null)->get();
+        $todos = Todo::where('due_date', '<', Carbon::now()->subHours(3))->where('reminder', null)->get();
+        // $todos = Todo::where('due_date', '<', Carbon::now()->subMinute(1))->where('reminder', null)->get();
         foreach ($todos as $todo) {
             Mail::to($todo->user->email)->send(new ReminderEmail($todo));
             // $todo->reminder = 'sent';
